@@ -1,0 +1,66 @@
+---
+import { Picture } from 'astro:assets';
+import Icon from './Icon.astro';
+import { cifras } from '@/data/contenido';
+// FOTO: reemplaza por una foto real del jardín (horizontal, mínimo 1920 px de ancho)
+import hero from '@/assets/fotos/hero.jpg';
+
+const formato = (n: number, decimales = 0) => n.toLocaleString('es-MX', { minimumFractionDigits: decimales, maximumFractionDigits: decimales });
+---
+<section class="hero" id="inicio" aria-labelledby="hero-titulo">
+  <div class="hero-media">
+    <Picture
+      src={hero}
+      formats={['avif', 'webp']}
+      widths={[640, 960, 1280, 1920]}
+      sizes="(max-aspect-ratio: 1/1) 150vh, 100vw"
+      loading="eager"
+      fetchpriority="high"
+      alt="Pasillo de ceremonia en el jardín, flanqueado por sillas doradas y arreglos de rosas blancas y rosas"
+    />
+  </div>
+
+  <div class="hero-content container">
+    <div class="hero-copy">
+      <p class="eyebrow hero-in" style="--d: 0">Bodas · XV años · Corporativos</p>
+      <h1 id="hero-titulo" class="hero-in" style="--d: 1">
+        Tu evento, rodeado de <em>naturaleza</em>
+      </h1>
+      <p class="hero-sub hero-in" style="--d: 2">
+        4,000&nbsp;m² de jardín y salón techado, con banquete y mobiliario incluidos. Celebra con hasta 300 invitados sin preocuparte por nada.
+      </p>
+      <div class="hero-actions hero-in" style="--d: 3">
+        <a class="btn btn-gold btn-lg" href="#disponibilidad">
+          Solicitar fecha <Icon name="flecha" />
+        </a>
+        <a class="btn btn-ghost btn-lg" href="#galeria">Ver galería</a>
+      </div>
+    </div>
+
+    <aside class="hero-card hero-in" style="--d: 4" aria-label="Temporada abierta">
+      <span class="pulse" aria-hidden="true"></span>
+      <div>
+        <p class="hero-card-title">Temporada 2027 abierta</p>
+        <p class="hero-card-text">Los sábados de primavera se apartan primero. Consulta tu fecha hoy.</p>
+      </div>
+    </aside>
+  </div>
+
+  <a class="scroll-cue" href="#cifras" aria-label="Bajar a la siguiente sección"><span></span></a>
+</section>
+
+<div class="stats-wrap" id="cifras">
+  <ul class="stats container">
+    {
+      cifras.map((c) => (
+        <li class="reveal">
+          <p class="stat-num">
+            <span data-count={c.valor} data-decimals={c.decimales ?? 0}>{formato(c.valor, c.decimales)}</span>
+            {c.sufijo}
+          </p>
+          <p class="stat-label">{c.etiqueta}</p>
+        </li>
+      ))
+    }
+  </ul>
+</div>

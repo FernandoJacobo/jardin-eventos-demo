@@ -1,0 +1,37 @@
+---
+import Icon from './Icon.astro';
+import { testimonios } from '@/data/contenido';
+
+const iniciales = (nombre: string) =>
+  nombre
+    .split(/\s+y\s+|\s+/)
+    .filter((p) => /^[A-ZÁÉÍÓÚÑ]/.test(p))
+    .slice(0, 2)
+    .map((p) => p[0])
+    .join('');
+---
+<section class="section" id="testimonios" aria-labelledby="testimonios-titulo">
+  <div class="container">
+    <header class="section-head section-head-center reveal">
+      <p class="eyebrow">Testimonios</p>
+      <h2 id="testimonios-titulo">Lo que dicen <em>nuestras familias</em></h2>
+    </header>
+    <div class="testimonials">
+      {
+        testimonios.map((t, i) => (
+          <figure class:list={['quote', 'reveal', { 'quote-featured': i === 1 }]} style={`--i: ${i}`}>
+            <span class="quote-mark" aria-hidden="true">“</span>
+            <p class="stars" role="img" aria-label="5 de 5 estrellas">
+              {Array.from({ length: 5 }, () => <Icon name="estrella" />)}
+            </p>
+            <blockquote><p>{t.texto}</p></blockquote>
+            <figcaption>
+              <span class="avatar" aria-hidden="true">{iniciales(t.nombre)}</span>
+              <span><strong>{t.nombre}</strong>{t.detalle}</span>
+            </figcaption>
+          </figure>
+        ))
+      }
+    </div>
+  </div>
+</section>

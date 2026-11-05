@@ -1,0 +1,23 @@
+---
+import { preguntas } from '@/data/contenido';
+import { site, waLink } from '@/config/site';
+---
+<section class="section" id="preguntas" aria-labelledby="preguntas-titulo">
+  <div class="container faq-grid">
+    <header class="section-head reveal">
+      <p class="eyebrow">Preguntas frecuentes</p>
+      <h2 id="preguntas-titulo">Resolvemos <em>tus dudas</em></h2>
+      <p>¿Tienes otra pregunta? <a href={waLink(`Hola, tengo una pregunta sobre ${site.name}:`)} target="_blank" rel="noopener">Escríbenos por WhatsApp</a></p>
+    </header>
+    <div class="faq reveal">
+      {
+        preguntas.map((q) => (
+          <details name="faq">
+            <summary>{q.pregunta}</summary>
+            <div class="faq-body"><p>{q.respuesta}</p></div>
+          </details>
+        ))
+      }
+    </div>
+  </div>
+</section>

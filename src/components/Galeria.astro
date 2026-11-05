@@ -1,0 +1,47 @@
+---
+import { Picture, getImage } from 'astro:assets';
+import Icon from './Icon.astro';
+import { galeria } from '@/data/contenido';
+
+// Versión grande (máx. 1600 px por lado) que se abre en el lightbox
+const fotos = await Promise.all(
+  galeria.map(async (g) => {
+    const vertical = g.foto.height > g.foto.width;
+    const grande = await getImage({ src: g.foto, format: 'webp', quality: 72, ...(vertical ? { height: 1600 } : { width: 1600 }) });
+    return { ...g, full: grande.src };
+  }),
+);
+---
+<section class="section" id="galeria" aria-labelledby="galeria-titulo">
+  <div class="container">
+    <header class="section-head section-head-row reveal">
+      <div>
+        <p class="eyebrow">Galería</p>
+        <h2 id="galeria-titulo">Momentos que <em>ya vivimos</em> juntos</h2>
+      </div>
+      <p>Toca cualquier foto para verla en grande.</p>
+    </header>
+    <ul class="gallery">
+      {
+        fotos.map((f) => (
+          <li class="reveal">
+            <button type="button" class="g-item" data-full={f.full} aria-label={`Ampliar foto: ${f.alt}`}>
+              <Picture src={f.foto} formats={['avif', 'webp']} widths={[400, 600, 900]} sizes="(min-width: 1200px) 380px, (min-width: 640px) 32vw, 50vw" alt={f.alt} />
+              <span class="g-zoom" aria-hidden="true">+</span>
+            </button>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>
+
+<dialog class="lightbox" id="lightbox" aria-label="Foto ampliada">
+  <button type="button" class="lb-btn lb-close" aria-label="Cerrar foto"><Icon name="cerrar" /></button>
+  <button type="button" class="lb-btn lb-prev" aria-label="Foto anterior"><Icon name="anterior" /></button>
+  <figure>
+    <img alt="" decoding="async" />
+    <figcaption></figcaption>
+  </figure>
+  <button type="button" class="lb-btn lb-next" aria-label="Foto siguiente"><Icon name="siguiente" /></button>
+</dialog>

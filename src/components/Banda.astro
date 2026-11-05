@@ -1,0 +1,14 @@
+---
+import { Picture } from 'astro:assets';
+// FOTO: el salón o el jardín iluminado de noche
+import salon from '@/assets/fotos/banda-salon.jpg';
+---
+<section class="band" aria-labelledby="banda-titulo">
+  <Picture src={salon} formats={['avif', 'webp']} widths={[640, 1280, 1920]} sizes="100vw" alt="" class="band-img" />
+  <div class="band-content container reveal">
+    <p class="eyebrow">De día en el jardín, de noche en el salón</p>
+    <h2 id="banda-titulo">Que la lluvia nunca <em>decida</em> por ti</h2>
+    <p>Nuestro salón techado está montado en paralelo durante todo tu evento. Si el clima cambia, en minutos todo sigue adentro.</p>
+    <a class="btn btn-gold btn-lg" href="#disponibilidad">Consultar disponibilidad</a>
+  </div>
+</section>

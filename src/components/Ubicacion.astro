@@ -1,0 +1,45 @@
+---
+import Icon from './Icon.astro';
+import { site } from '@/config/site';
+const d = site.direccion;
+---
+<section class="section section-alt" id="ubicacion" aria-labelledby="ubicacion-titulo">
+  <div class="container location">
+    <div class="location-info reveal">
+      <p class="eyebrow">Ubicación</p>
+      <h2 id="ubicacion-titulo">Cerca de la ciudad, <em>lejos del ruido</em></h2>
+      <dl class="info-list">
+        <div>
+          <dt><Icon name="pin" /> Dirección</dt>
+          <dd>{d.calle},<br />{d.colonia}, {d.ciudad}, C.P. {d.cp}</dd>
+        </div>
+        <div>
+          <dt><Icon name="calendario" /> Visitas y citas</dt>
+          <dd>{site.horarios.map((h) => <>{h.dias}: {h.horas}<br /></>)}</dd>
+        </div>
+        <div>
+          <dt><Icon name="reloj" /> Eventos</dt>
+          <dd>Todos los días, con cita previa</dd>
+        </div>
+      </dl>
+      <a class="btn btn-primary btn-lg" href={site.mapsUrl} target="_blank" rel="noopener">Cómo llegar <Icon name="flecha" /></a>
+    </div>
+    <!-- MAPA: placeholder ilustrado. Para un lugar real, sustitúyelo por el iframe de Google Maps
+         (Compartir → Insertar un mapa) con loading="lazy". -->
+    <div class="map reveal" role="img" aria-label="Mapa ilustrativo de la ubicación del jardín">
+      <svg viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+        <rect width="400" height="300" fill="#e6ead9"></rect>
+        <path d="M0 210C80 190 140 230 220 200S340 120 400 130" stroke="#fff" stroke-width="14" fill="none"></path>
+        <path d="M120 0C130 80 170 140 160 300" stroke="#fff" stroke-width="10" fill="none"></path>
+        <path d="M260 0c-10 60 30 90 20 150" stroke="#fff" stroke-width="7" fill="none"></path>
+        <circle cx="320" cy="60" r="34" fill="#cfd8bd"></circle><circle cx="60" cy="90" r="40" fill="#cfd8bd"></circle><circle cx="330" cy="250" r="30" fill="#cfd8bd"></circle>
+        <path d="M0 270c60-10 90 10 140 0" stroke="#b9cfe0" stroke-width="10" fill="none"></path>
+      </svg>
+      <div class="map-pin" aria-hidden="true">
+        <span class="map-ring"></span>
+        <Icon name="pin" />
+        <span class="map-label">{site.name}</span>
+      </div>
+    </div>
+  </div>
+</section>

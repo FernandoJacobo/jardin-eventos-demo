@@ -1,0 +1,58 @@
+---
+import Icon from './Icon.astro';
+import { tiposEvento } from '@/data/contenido';
+---
+<section class="section booking" id="disponibilidad" aria-labelledby="disponibilidad-titulo">
+  <div class="booking-deco" aria-hidden="true"></div>
+  <div class="container booking-grid">
+    <div class="booking-copy reveal">
+      <p class="eyebrow">Disponibilidad</p>
+      <h2 id="disponibilidad-titulo">Aparta tu fecha <em>antes</em> de que alguien más lo haga</h2>
+      <p class="lead">Los sábados de temporada alta se reservan con meses de anticipación. Cuéntanos qué celebras y te confirmamos disponibilidad y cotización por WhatsApp el mismo día.</p>
+      <ul class="checks">
+        <li><Icon name="reloj" /> Respuesta en menos de 24&nbsp;horas</li>
+        <li><Icon name="calendario" /> Visita guiada sin compromiso</li>
+        <li><Icon name="check" /> Apartado con el 30&nbsp;% de anticipo</li>
+      </ul>
+    </div>
+
+    <form class="booking-form reveal" id="form-fecha" novalidate>
+      <h3>Solicitar fecha</h3>
+      <p class="form-intro">Llena 4 datos y te enviamos el mensaje listo.</p>
+      <div class="field">
+        <label for="f-nombre">Nombre completo</label>
+        <input id="f-nombre" name="nombre" type="text" autocomplete="name" required minlength="2" maxlength="80" aria-describedby="e-nombre" />
+        <p class="error" id="e-nombre" aria-live="polite"></p>
+      </div>
+      <div class="field">
+        <label for="f-tipo">Tipo de evento</label>
+        <select id="f-tipo" name="tipo" required aria-describedby="e-tipo">
+          <option value="">Selecciona una opción</option>
+          {tiposEvento.map((t) => <option>{t}</option>)}
+        </select>
+        <p class="error" id="e-tipo" aria-live="polite"></p>
+      </div>
+      <div class="field-row">
+        <div class="field">
+          <label for="f-fecha">Fecha del evento</label>
+          <input id="f-fecha" name="fecha" type="date" required aria-describedby="e-fecha" />
+          <p class="error" id="e-fecha" aria-live="polite"></p>
+        </div>
+        <div class="field">
+          <label for="f-invitados">Invitados (aprox.)</label>
+          <input id="f-invitados" name="invitados" type="number" inputmode="numeric" min="10" max="300" step="1" required placeholder="Ej. 150" aria-describedby="e-invitados" />
+          <p class="error" id="e-invitados" aria-live="polite"></p>
+        </div>
+      </div>
+      <div class="field">
+        <label for="f-mensaje">Mensaje <span class="optional">(opcional)</span></label>
+        <textarea id="f-mensaje" name="mensaje" rows="3" maxlength="500" placeholder="Horario, dudas o lo que tengas en mente"></textarea>
+      </div>
+      <button class="btn btn-wa btn-lg btn-block" type="submit">
+        <Icon name="whatsapp" />
+        Enviar por WhatsApp
+      </button>
+      <p class="form-note">Se abrirá WhatsApp con tu mensaje listo para enviar. No guardamos tus datos.</p>
+    </form>
+  </div>
+</section>

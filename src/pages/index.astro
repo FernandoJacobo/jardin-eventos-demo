@@ -1,0 +1,38 @@
+---
+import Base from '@/layouts/Base.astro';
+import Header from '@/components/Header.astro';
+import Hero from '@/components/Hero.astro';
+import Marquesina from '@/components/Marquesina.astro';
+import PorQue from '@/components/PorQue.astro';
+import Eventos from '@/components/Eventos.astro';
+import Galeria from '@/components/Galeria.astro';
+import Paquetes from '@/components/Paquetes.astro';
+import Banda from '@/components/Banda.astro';
+import Disponibilidad from '@/components/Disponibilidad.astro';
+import Testimonios from '@/components/Testimonios.astro';
+import Ubicacion from '@/components/Ubicacion.astro';
+import Preguntas from '@/components/Preguntas.astro';
+import Footer from '@/components/Footer.astro';
+import { site } from '@/config/site';
+---
+<Base title={`${site.name} · Jardín de eventos para bodas, XV años y más`}>
+  <Header />
+  <main id="contenido">
+    <Hero />
+    <Marquesina />
+    <PorQue />
+    <Eventos />
+    <Galeria />
+    <Paquetes />
+    <Banda />
+    <Disponibilidad />
+    <Testimonios />
+    <Ubicacion />
+    <Preguntas />
+  </main>
+  <Footer />
+</Base>
+
+<script>
+  import '@/scripts/main';
+</script>

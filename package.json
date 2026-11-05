@@ -1,0 +1,25 @@
+{
+  "name": "demo-jardin-eventos",
+  "type": "module",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Landing page demo para jardín de eventos (marca ficticia Jardín Aurora), hecha con Astro.",
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "check": "astro check",
+    "deploy": "astro build && npx wrangler pages deploy dist --project-name jardin-eventos-demo"
+  },
+  "dependencies": {
+    "astro": "^7.3.8"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.10",
+    "typescript": "^6.0.3"
+  }
+}

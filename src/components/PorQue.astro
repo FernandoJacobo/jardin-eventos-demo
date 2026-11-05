@@ -1,0 +1,26 @@
+---
+import Icon from './Icon.astro';
+import { beneficios } from '@/data/contenido';
+---
+<section class="section" id="por-que" aria-labelledby="por-que-titulo">
+  <div class="container why">
+    <header class="why-head reveal">
+      <p class="eyebrow">Por qué elegirnos</p>
+      <h2 id="por-que-titulo">Todo lo que tu celebración necesita, <em>en un solo lugar</em></h2>
+      <p class="lead">Un solo contrato, un solo coordinador y cero carreras entre proveedores. Tú eliges la fecha; nosotros nos encargamos del resto.</p>
+      <a class="link-arrow" href="#disponibilidad">Agenda una visita guiada <Icon name="flecha" /></a>
+    </header>
+    <ol class="features">
+      {
+        beneficios.map((b, i) => (
+          <li class="feature reveal" style={`--i: ${i}`}>
+            <span class="feature-num" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
+            <span class="feature-icon"><Icon name={b.icono} /></span>
+            <h3>{b.titulo}</h3>
+            <p>{b.texto}</p>
+          </li>
+        ))
+      }
+    </ol>
+  </div>
+</section>

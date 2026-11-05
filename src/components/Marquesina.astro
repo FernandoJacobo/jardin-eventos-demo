@@ -1,0 +1,10 @@
+---
+import { marquesina } from '@/data/contenido';
+// La lista se repite dos veces para que el desplazamiento sea continuo; la copia se oculta a lectores de pantalla.
+---
+<div class="marquee" role="region" aria-label="Tipos de celebración">
+  <div class="marquee-track">
+    <ul>{marquesina.map((t) => <li>{t}</li>)}</ul>
+    <ul aria-hidden="true">{marquesina.map((t) => <li>{t}</li>)}</ul>
+  </div>
+</div>

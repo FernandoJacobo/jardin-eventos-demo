@@ -1,0 +1,47 @@
+---
+import Icon from './Icon.astro';
+import { paquetes } from '@/data/contenido';
+import { site, waLink } from '@/config/site';
+
+const precio = (n: number) => `$${n.toLocaleString('es-MX')}`;
+---
+<section class="section section-alt" id="paquetes" aria-labelledby="paquetes-titulo">
+  <div class="container">
+    <header class="section-head section-head-center reveal">
+      <p class="eyebrow">Paquetes</p>
+      <h2 id="paquetes-titulo">Elige el paquete <em>ideal</em> para tu evento</h2>
+      <p>Precios de referencia para 100 invitados. Te enviamos una cotización a la medida.</p>
+    </header>
+    <div class="plans">
+      {
+        paquetes.map((p, i) => (
+          <article class:list={['plan', 'reveal', { 'plan-featured': p.destacado }]} style={`--i: ${i}`}>
+            {p.destacado && <p class="badge">Más popular</p>}
+            <h3>{p.nombre}</h3>
+            <p class="plan-desc">{p.descripcion}</p>
+            <p class="price">
+              <span>Desde</span>
+              {precio(p.precio)} <small>MXN</small>
+            </p>
+            <ul class="plan-list">
+              {p.incluye.map((x) => (
+                <li>
+                  <Icon name="check" />
+                  {x}
+                </li>
+              ))}
+            </ul>
+            <a
+              class:list={['btn', p.destacado ? 'btn-gold' : 'btn-outline']}
+              href={waLink(`Hola, me interesa cotizar el paquete ${p.nombre} de ${site.name}. ¿Me pueden compartir disponibilidad y detalles?`)}
+              target="_blank"
+              rel="noopener"
+            >
+              Cotizar este paquete
+            </a>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>
